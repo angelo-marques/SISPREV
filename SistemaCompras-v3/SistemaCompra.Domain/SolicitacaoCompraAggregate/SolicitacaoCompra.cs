@@ -30,6 +30,12 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
         public void AdicionarItem(Produto produto, int qtde)
         {
+            if (qtde < 1)
+                throw new BusinessRuleException("Quantidade tem que ser maior que 0!");
+
+            if (produto == null)
+                throw new BusinessRuleException("Produto não existe");
+
             Itens.Add(new Item(produto, qtde));
         }
 
