@@ -1,4 +1,6 @@
-﻿namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
+﻿using SistemaCompra.Domain.ProdutoAggregate;
+
+namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 {
     public interface ISolicitacaoCompraRepository
     {

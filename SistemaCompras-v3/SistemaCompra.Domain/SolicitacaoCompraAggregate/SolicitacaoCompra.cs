@@ -17,6 +17,7 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
         public Money TotalGeral { get; private set; }
         public Situacao Situacao { get; private set; }
 
+        public CondicaoPagamento Condicao { get; private set; }
         private SolicitacaoCompra() { }
 
         public SolicitacaoCompra(string usuarioSolicitante, string nomeFornecedor)
@@ -41,6 +42,18 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
         public void RegistrarCompra(IEnumerable<Item> itens)
         {
+            if (itens.Any()) { }
+            decimal totalGeral = 0;
+
+            foreach (var item in itens)
+            {
+                totalGeral += item.Subtotal.Value;
+            }
+
+            if(totalGeral > 50000 && Condicao.Valor != 30)
+            {
+                 new CondicaoPagamento(30);
+            }
            
         }
     }
