@@ -7,6 +7,8 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 {
     public class NomeFornecedor
     {
+        public int Id { get; set; }
+
         public string Nome { get; }
 
         private NomeFornecedor() { }
@@ -18,5 +20,7 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
             Nome = nome;
         }
+
+        public virtual IList<SolicitacaoCompra> SolicitacaoCompra { get; set; }
     }
 }

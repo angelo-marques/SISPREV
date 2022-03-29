@@ -10,14 +10,13 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 {
     public class SolicitacaoCompra : Entity
     {
-        public UsuarioSolicitante UsuarioSolicitante { get; private set; }
-        public NomeFornecedor NomeFornecedor { get; private set; }
         public IList<Item> Itens { get; private set; }
         public DateTime Data { get; private set; }
-        public Money TotalGeral { get; private set; }
         public Situacao Situacao { get; private set; }
-
-        public CondicaoPagamento Condicao { get; private set; }
+        public UsuarioSolicitante UsuarioSolicitante { get; private set; }
+        public NomeFornecedor NomeFornecedor { get; private set; }
+        public Money TotalGeral { get; private set; }
+        
         private SolicitacaoCompra() { }
 
         public SolicitacaoCompra(string usuarioSolicitante, string nomeFornecedor)
@@ -27,6 +26,7 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
             NomeFornecedor = new NomeFornecedor(nomeFornecedor);
             Data = DateTime.Now;
             Situacao = Situacao.Solicitado;
+     
         }
 
         public void AdicionarItem(Produto produto, int qtde)
@@ -40,9 +40,12 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
             Itens.Add(new Item(produto, qtde));
         }
 
-        public void RegistrarCompra(IEnumerable<Item> itens)
+        public void RegistrarCompra(IEnumerable<Item> itens, int? condicao)
         {
-            if (itens.Any()) { }
+            if (!itens.Any()) {
+                throw new BusinessRuleException("Quantidade tem que ser maior que 0!");
+            }
+
             decimal totalGeral = 0;
 
             foreach (var item in itens)
@@ -50,7 +53,7 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
                 totalGeral += item.Subtotal.Value;
             }
 
-            if(totalGeral > 50000 && Condicao.Valor != 30)
+            if(totalGeral > 50000 && condicao != 30)
             {
                  new CondicaoPagamento(30);
             }

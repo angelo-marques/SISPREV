@@ -7,7 +7,7 @@ namespace SistemaCompra.Domain.Core.Model
     public class Money : ValueObject<Money>
     {
         public readonly decimal Value;
-
+        
         public Money()
                 : this(0m)
         {
@@ -32,5 +32,6 @@ namespace SistemaCompra.Domain.Core.Model
         {
             return new List<Object>() { Value };
         }
+
     }
 }

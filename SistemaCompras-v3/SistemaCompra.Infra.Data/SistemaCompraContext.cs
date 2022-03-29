@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SistemaCompra.Domain.Core;
+using SistemaCompra.Domain.Core.Model;
 using SistemaCompra.Infra.Data.Produto;
+using SistemaCompra.Infra.Data.SolicitacaoCompra;
 using ProdutoAgg = SistemaCompra.Domain.ProdutoAggregate;
 using SolicitacaoAgg = SistemaCompra.Domain.SolicitacaoCompraAggregate;
 
@@ -13,6 +15,7 @@ namespace SistemaCompra.Infra.Data
 
         public SistemaCompraContext(DbContextOptions options) : base(options) { }
         public DbSet<ProdutoAgg.Produto> Produtos { get; set; }
+        public DbSet<SolicitacaoAgg.SolicitacaoCompra> SolicitacaoCompras { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,15 +25,17 @@ namespace SistemaCompra.Infra.Data
                 );
 
             modelBuilder.Ignore<Event>();
+            modelBuilder.Ignore<Money>();
 
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
+            modelBuilder.ApplyConfiguration(new SolicitacaoCompraConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLoggerFactory(loggerFactory)  
                 .EnableSensitiveDataLogging()
-                .UseSqlServer(@"Server=localhost\SQLEXPRESS01;Database=SistemaCompraDb;Trusted_Connection=True;MultipleActiveResultSets=true");
+                .UseSqlServer(@"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SistemaCompra;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
     }
 }

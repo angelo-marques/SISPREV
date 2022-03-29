@@ -1,7 +1,4 @@
 ﻿using SistemaCompra.Domain.SolicitacaoCompraAggregate;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SistemaCompra.Infra.Data.SolicitacaoCompra
 {
@@ -14,9 +11,9 @@ namespace SistemaCompra.Infra.Data.SolicitacaoCompra
             this.context = context;
         }
 
-        public void RegistrarCompra(Domain.SolicitacaoCompraAggregate.SolicitacaoCompra solicitacaoCompra)
+        public void RegistrarCompra(Domain.SolicitacaoCompraAggregate.SolicitacaoCompra entity)
         {
-            context.Set<Domain.SolicitacaoCompraAggregate.SolicitacaoCompra>().Add(solicitacaoCompra);
+            context.Set<Domain.SolicitacaoCompraAggregate.SolicitacaoCompra>().Add(entity);
         }
     }
 }

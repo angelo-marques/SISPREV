@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaCompra.Infra.Data;
 
 namespace SistemaCompra.API.Migrations
 {
     [DbContext(typeof(SistemaCompraContext))]
-    partial class SistemaCompraContextModelSnapshot : ModelSnapshot
+    [Migration("20220329212230_AddDados")]
+    partial class AddDados
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,29 +25,18 @@ namespace SistemaCompra.API.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Categoria")
-                        .HasColumnName("Categoria")
                         .HasColumnType("int");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasColumnName("Descricao")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnName("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Preco")
-                        .HasColumnName("Preco")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("Situacao")
-                        .HasColumnName("Situacao")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -55,11 +46,10 @@ namespace SistemaCompra.API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6bd3dd13-5b9f-4ac5-a897-05c8eca0cf37"),
+                            Id = new Guid("810f9e94-2df9-4aef-9932-e68d9b9fb2bf"),
                             Categoria = 1,
                             Descricao = "Descricao01",
                             Nome = "Produto01",
-                            Preco = 100m,
                             Situacao = 1
                         });
                 });

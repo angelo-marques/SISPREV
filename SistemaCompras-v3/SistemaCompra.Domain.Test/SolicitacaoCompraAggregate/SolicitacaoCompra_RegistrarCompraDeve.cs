@@ -18,7 +18,7 @@ namespace SistemaCompra.Domain.Test.SolicitacaoCompraAggregate
             itens.Add(new Item(produto, 50));
 
             //Quando
-            solicitacao.RegistrarCompra(itens);
+            solicitacao.RegistrarCompra(itens, 0);
 
             //Então
             //Assert.Equal(30, solicitacao.CondicaoPagamento.Valor);
@@ -32,7 +32,7 @@ namespace SistemaCompra.Domain.Test.SolicitacaoCompraAggregate
             var itens = new List<Item>();
 
             //Quando 
-            var ex = Assert.Throws<BusinessRuleException>(() => solicitacao.RegistrarCompra(itens));
+            var ex = Assert.Throws<BusinessRuleException>(() => solicitacao.RegistrarCompra(itens, 0));
 
             //Então
             Assert.Equal("A solicitação de compra deve possuir itens!", ex.Message);

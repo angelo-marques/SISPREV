@@ -12,8 +12,10 @@ using SistemaCompra.Domain.ProdutoAggregate;
 using SistemaCompra.Domain.SolicitacaoCompraAggregate;
 using SistemaCompra.Infra.Data;
 using SistemaCompra.Infra.Data.Produto;
+using SistemaCompra.Infra.Data.SolicitacaoCompra;
 using SistemaCompra.Infra.Data.UoW;
 using System;
+using System.Reflection;
 
 namespace SistemaCompra.API
 {
@@ -31,10 +33,12 @@ namespace SistemaCompra.API
             services.AddControllers();
             var assembly = AppDomain.CurrentDomain.Load("SistemaCompra.Application");
             services.AddMediatR(assembly);
+            //services.AddMediatR(typeof(Startup).GetTypeInfo().Assembly);
             services.AddAutoMapper(assembly);
             services.AddSignalR();
 
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ISolicitacaoCompraRepository, SolicitacaoCompraRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<SistemaCompraContext>(options =>
@@ -55,6 +59,8 @@ namespace SistemaCompra.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
             }
             
             app.UseRouting();

@@ -8,7 +8,10 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 {
     public class UsuarioSolicitante : ValueObject<UsuarioSolicitante>
     {
+        public int Id { get; set; }
+
         public string Nome { get; }
+
 
         private UsuarioSolicitante() { }
 
@@ -24,5 +27,6 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
         {
             return new List<object>() { Nome };
         }
+
     }
 }
