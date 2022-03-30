@@ -10,8 +10,8 @@ using SistemaCompra.Infra.Data;
 namespace SistemaCompra.API.Migrations
 {
     [DbContext(typeof(SistemaCompraContext))]
-    [Migration("20220329212230_AddDados")]
-    partial class AddDados
+    [Migration("20220330010911_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -25,31 +25,41 @@ namespace SistemaCompra.API.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("Id")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Categoria")
+                        .HasColumnName("Categoria")
                         .HasColumnType("int");
 
                     b.Property<string>("Descricao")
+                        .HasColumnName("Descricao")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
+                        .HasColumnName("Nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Preco")
+                        .HasColumnName("Preco")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("Situacao")
+                        .HasColumnName("Situacao")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Produto");
+                    b.ToTable("Produtos");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("810f9e94-2df9-4aef-9932-e68d9b9fb2bf"),
+                            Id = new Guid("99d07914-5474-4d47-85ab-d5b7c48b4b3e"),
                             Categoria = 1,
                             Descricao = "Descricao01",
                             Nome = "Produto01",
+                            Preco = 100m,
                             Situacao = 1
                         });
                 });
@@ -75,7 +85,7 @@ namespace SistemaCompra.API.Migrations
 
                     b.HasIndex("SolicitacaoCompraId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("SistemaCompra.Domain.SolicitacaoCompraAggregate.NomeFornecedor", b =>

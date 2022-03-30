@@ -31,12 +31,10 @@ namespace SistemaCompra.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnName("Descricao")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nome")
-                        .IsRequired()
                         .HasColumnName("Nome")
                         .HasColumnType("nvarchar(max)");
 
@@ -50,12 +48,12 @@ namespace SistemaCompra.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Produto");
+                    b.ToTable("Produtos");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6bd3dd13-5b9f-4ac5-a897-05c8eca0cf37"),
+                            Id = new Guid("99d07914-5474-4d47-85ab-d5b7c48b4b3e"),
                             Categoria = 1,
                             Descricao = "Descricao01",
                             Nome = "Produto01",
@@ -85,7 +83,7 @@ namespace SistemaCompra.API.Migrations
 
                     b.HasIndex("SolicitacaoCompraId");
 
-                    b.ToTable("Item");
+                    b.ToTable("Items");
                 });
 
             modelBuilder.Entity("SistemaCompra.Domain.SolicitacaoCompraAggregate.NomeFornecedor", b =>

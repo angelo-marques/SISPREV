@@ -16,6 +16,8 @@ namespace SistemaCompra.Infra.Data
         public SistemaCompraContext(DbContextOptions options) : base(options) { }
         public DbSet<ProdutoAgg.Produto> Produtos { get; set; }
         public DbSet<SolicitacaoAgg.SolicitacaoCompra> SolicitacaoCompras { get; set; }
+        public DbSet<SolicitacaoAgg.Item> Items { get; set; }
+    
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,7 +27,6 @@ namespace SistemaCompra.Infra.Data
                 );
 
             modelBuilder.Ignore<Event>();
-            modelBuilder.Ignore<Money>();
 
             modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
             modelBuilder.ApplyConfiguration(new SolicitacaoCompraConfiguration());
@@ -35,7 +36,7 @@ namespace SistemaCompra.Infra.Data
         {
             optionsBuilder.UseLoggerFactory(loggerFactory)  
                 .EnableSensitiveDataLogging()
-                .UseSqlServer(@"Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SistemaCompra;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                .UseSqlServer(@"Data Source=MARQUES\SQLEXPRESS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
     }
 }

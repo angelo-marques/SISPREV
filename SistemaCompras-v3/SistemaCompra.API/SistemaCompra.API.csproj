@@ -17,6 +17,12 @@
     <Compile Remove="Migrations\20200211143958_ProdutoConfig.Designer.cs" />
     <Compile Remove="Migrations\20200211144547_Initial.cs" />
     <Compile Remove="Migrations\20200211144547_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20200211150013_PrecoConfig.cs" />
+    <Compile Remove="Migrations\20200211150013_PrecoConfig.Designer.cs" />
+    <Compile Remove="Migrations\20220329212230_AddDados.cs" />
+    <Compile Remove="Migrations\20220329212230_AddDados.Designer.cs" />
+    <Compile Remove="Migrations\20220329213951_AddPreco.cs" />
+    <Compile Remove="Migrations\20220329213951_AddPreco.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
